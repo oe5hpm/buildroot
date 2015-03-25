@@ -1,12 +1,8 @@
 # /etc/fstab: static file system information.
 #
 # <file system> 	<mount pt>     <type>	<options>         	<dump>	<pass>
-LABEL=ppt-boot		/boot		ext4	rw,auto			0	0
-LABEL=ppt-config	/config		ext4	rw,auto			0	0
-LABEL=ppt-user		/mnt/user	ext4	rw,auto			0	0
-LABEL=ppt-sys		/mnt/sys	ext4	rw,auto			0	0
-/dev/sda1		/mnt/usb	vfat	rw,auto			0	0
-/dev/root		/		ext2	rw,noauto		0	0
+/dev/root		/		jffs2	rw,noauto		0	0
+mtd7			/mnt/user	jffs2	rw			0	0
 proc			/proc		proc	defaults		0	0
 devpts			/dev/pts	devpts	defaults,gid=5,mode=620	0	0
 tmpfs			/dev/shm	tmpfs	mode=0777		0	0

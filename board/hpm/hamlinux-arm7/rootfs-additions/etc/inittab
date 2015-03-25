@@ -29,9 +29,6 @@ ttyO0::respawn:/sbin/getty -L  ttyO0 115200 vt100 # GENERIC_SERIAL
 # Put a getty on the LCD-screen
 tty0::respawn:/sbin/getty 38400 tty0
 
-# start rmsrv
-tty6::respawn:/sbin/rmsvr 2>&1 > /dev/null
-
 # Stuff to do for the 3-finger salute
 ::ctrlaltdel:/sbin/reboot
 

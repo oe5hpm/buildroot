@@ -1,7 +1,0 @@
-#!/bin/sh
-
-while sleep 1; do 
-  i=$((++i%4 + 2)); 
-  printf '\b|/-\' | cut -b 1,$i | tr -d '\n';
-done
-
