@@ -7,7 +7,7 @@ DATUM=`date +%Y%m%d`
 
 rm -r -f $TARGETDIR/root/
 
-cp -r $BOARDDIR/rootfs-additions/* $TARGETDIR/
+cp -r -f $BOARDDIR/rootfs-additions/* $TARGETDIR/
 
 echo "hamlinux (build: $BRANCH / $COMMITID) from $DATUM" > $TARGETDIR/versioninfo.txt
 
