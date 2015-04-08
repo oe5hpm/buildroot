@@ -7,6 +7,7 @@ FILE=dxlAPRS_armv7hf-current
 
 
 [ -d $DSTMAP ] || mkdir -p $DSTMAP
+[ -d $DSTMAP/osm ] || mkdir -p $DSTMAP/osm
 [ -d $DSTAPRS ] || mkdir -p $DSTAPRS
 
 cd /tmp
