@@ -1,0 +1,30 @@
+#!/bin/sh
+
+DSTMAP=/home/dxlAPRS/aprsmap
+DSTAPRS=/home/dxlAPRS/aprs
+SOURCE=http://dxlaprs.hamspirit.at
+FILE=dxlAPRS_armv7hf-current
+
+
+[ -d $DSTMAP ] || mkdir -p $DSTMAP
+[ -d $DSTAPRS ] || mkdir -p $DSTAPRS
+
+cd /tmp
+[ -d dxlAPRS-update ] || mkdir dxlAPRS-update
+cd dxlAPRS-update
+[ -r $FILE.tgz ] && rm $FILE.tgz
+wget $SOURCE/$FILE.tgz
+
+if [ $? -eq 0 ] && [ -r $FILE.tgz ]; then
+	gunzip $FILE.tgz
+	tar -xf $FILE.tar
+	rm $FILE.tar
+	echo "installing aprsmap-components ..."
+	mv -f aprsmap_common/* $DSTMAP/
+	mv -f aprsmap $DSTMAP/
+	rm -r aprsmap_common
+	echo "installing aprs-components ..."
+	mv -f dxlAPRS_common/* $DSTAPRS/
+	rm -r dxlAPRS_common
+	mv -f * $DSTAPRS/
+fi

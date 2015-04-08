@@ -1,7 +1,8 @@
 #!/bin/sh
 [ -d /home/aprs ] || mkdir -p /home/aprs
 chown -R aprs:staff /home/aprs
-
+[ -d /home/dxlAPRS ] || mkdir -p /home/dxlAPRS
+cp /root/utils/updateDXLaprs /home/dxlAPRS
 [ -d /home/dxlAPRS ] && chown -R aprs:staff /home/dxlAPRS
 
 rm /etc/init.d/S99firstboot
