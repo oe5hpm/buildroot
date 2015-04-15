@@ -8,5 +8,8 @@ chown -R aprs:staff /home/aprs
 cp /root/utils/updateDXLaprs /home/dxlAPRS
 [ -d /home/dxlAPRS ] && chown -R aprs:staff /home/dxlAPRS
 
+# make Xorg Server executeable for 'normal' users
+chmod u+s /usr/bin/Xorg
+
 # remove this script from startup
 rm /etc/init.d/S99firstboot
