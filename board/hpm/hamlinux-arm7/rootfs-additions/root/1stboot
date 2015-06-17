@@ -11,5 +11,8 @@ cp /root/utils/updateDXLaprs /home/dxlAPRS
 # make Xorg Server executeable for 'normal' users
 chmod u+s /usr/bin/Xorg
 
+# make ping executeable for 'normal' user
+chmod u+s /bin/ping
+
 # remove this script from startup
 rm /etc/init.d/S99firstboot
