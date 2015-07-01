@@ -25,6 +25,17 @@ if [ $? -eq 0 ] && [ -r $FILE.tgz ]; then
 	gunzip $FILE.tgz
 	tar -xf $FILE.tar
 	rm $FILE.tar
+	echo "stopping all aprs-executeables ..."
+	killall afskmodem 2>/dev/null
+	killall gps2aprs 2>/dev/null
+	killall gps2digipos 2>/dev/null
+	killall sondemod 2>/dev/null
+	killall sondeudp 2>/dev/null
+	killall udpflex 2>/dev/null
+	killall udphub 2>/dev/null
+	killall udprfnet 2>/dev/null
+	killall udpgate4 2>/dev/null
+	killall udpbox 2>/dev/null
 	echo "installing aprsmap-components ..."
 	mv -f aprsmap_common/* $DSTMAP/
 	mv -f aprsmap $DSTMAP/
