@@ -1,4 +1,9 @@
 #!/bin/sh
+USER=`whoami`
+if [ "$USER" != "root" ]; then
+    echo "you must do this as root!"
+    exit 1
+fi
 
 DSTMAP=/home/dxlAPRS/aprsmap
 DSTAPRS=/home/dxlAPRS/aprs
@@ -28,4 +33,14 @@ if [ $? -eq 0 ] && [ -r $FILE.tgz ]; then
 	mv -f dxlAPRS_common/* $DSTAPRS/
 	rm -r dxlAPRS_common
 	mv -f * $DSTAPRS/
+	chown -R aprs:staff $DSTAPRS
+	
+	chown root:staff $DSTAPRS/afskmodem
+	olddir=`pwd`
+	cd $DSTAPRS
+	for f in $(\ls); do 
+		test -x $f && chmod 0755 $f
+	done
+	chmod +s afskmodem
+	cd $olddir
 fi
