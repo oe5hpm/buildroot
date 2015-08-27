@@ -45,7 +45,7 @@ if [ $? -eq 0 ] && [ -r $FILE.tgz ]; then
 	rm -r dxlAPRS_common
 	mv -f * $DSTAPRS/
 	chown -R aprs:staff $DSTAPRS
-	
+	chown -R aprs:staff $DSTMAP
 	chown root:staff $DSTAPRS/afskmodem
 	olddir=`pwd`
 	cd $DSTAPRS
