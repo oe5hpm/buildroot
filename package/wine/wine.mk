@@ -6,7 +6,7 @@
 
 WINE_VERSION = 1.6.2
 WINE_SOURCE = wine-$(WINE_VERSION).tar.bz2
-WINE_SITE = http://downloads.sourceforge.net/project/wine/Source
+WINE_SITE = https://dl.winehq.org/wine/source/1.6
 WINE_LICENSE = LGPLv2.1+
 WINE_LICENSE_FILES = COPYING.LIB LICENSE
 WINE_DEPENDENCIES = host-bison host-flex host-wine
@@ -25,9 +25,7 @@ WINE_CONF_OPTS = \
 	--without-gphoto \
 	--without-gsm \
 	--without-hal \
-	--without-openal \
 	--without-opencl \
-	--without-osmesa \
 	--without-oss
 
 # Wine uses a wrapper around gcc, and uses the value of --host to
@@ -164,11 +162,25 @@ else
 WINE_CONF_OPTS += --without-curses
 endif
 
+ifeq ($(BR2_PACKAGE_OPENAL),y)
+WINE_CONF_OPTS += --with-openal
+WINE_DEPENDENCIES += openal
+else
+WINE_CONF_OPTS += --without-openal
+endif
+
 ifeq ($(BR2_PACKAGE_OPENLDAP),y)
 WINE_CONF_OPTS += --with-ldap
 WINE_DEPENDENCIES += openldap
 else
 WINE_CONF_OPTS += --without-ldap
+endif
+
+ifeq ($(BR2_PACKAGE_MESA3D_OSMESA),y)
+WINE_CONF_OPTS += --with-osmesa
+WINE_DEPENDENCIES += mesa3d
+else
+WINE_CONF_OPTS += --without-osmesa
 endif
 
 ifeq ($(BR2_PACKAGE_SANE_BACKENDS),y)

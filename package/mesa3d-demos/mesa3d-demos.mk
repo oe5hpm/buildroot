@@ -4,12 +4,17 @@
 #
 ################################################################################
 
-MESA3D_DEMOS_VERSION = 8.2.0
+MESA3D_DEMOS_VERSION = 8.3.0
 MESA3D_DEMOS_SOURCE = mesa-demos-$(MESA3D_DEMOS_VERSION).tar.bz2
 MESA3D_DEMOS_SITE = ftp://ftp.freedesktop.org/pub/mesa/demos/$(MESA3D_DEMOS_VERSION)
 MESA3D_DEMOS_AUTORECONF = YES
 MESA3D_DEMOS_DEPENDENCIES = host-pkgconf
 MESA3D_DEMOS_LICENSE = MIT
+
+MESA3D_DEMOS_CONF_OPTS += \
+	--without-glut \
+	--disable-osmesa \
+	--disable-gles1
 
 ifeq ($(BR2_PACKAGE_XORG7)$(BR2_PACKAGE_HAS_LIBGL),yy)
 MESA3D_DEMOS_DEPENDENCIES += libgl libglew libglu xlib_libX11 xlib_libXext
@@ -27,9 +32,9 @@ endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGLES),y)
 MESA3D_DEMOS_DEPENDENCIES += libgles
-MESA3D_DEMOS_CONF_OPTS += --enable-gles1 --enable-gles2
+MESA3D_DEMOS_CONF_OPTS += --enable-gles2
 else
-MESA3D_DEMOS_CONF_OPTS += --disable-gles1 --disable-gles2
+MESA3D_DEMOS_CONF_OPTS += --disable-gles2
 endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBOPENVG),y)
