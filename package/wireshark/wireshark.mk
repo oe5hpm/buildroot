@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WIRESHARK_VERSION = 2.0.0
+WIRESHARK_VERSION = 2.0.3
 WIRESHARK_SOURCE = wireshark-$(WIRESHARK_VERSION).tar.bz2
 WIRESHARK_SITE = http://www.wireshark.org/download/src/all-versions
 WIRESHARK_LICENSE = wireshark license
@@ -90,6 +90,13 @@ WIRESHARK_CONF_OPTS += --with-libnl
 WIRESHARK_DEPENDENCIES += libnl
 else
 WIRESHARK_CONF_OPTS += --without-libnl
+endif
+
+ifeq ($(BR2_PACKAGE_SBC),y)
+WIRESHARK_CONF_OPTS += --with-sbc=yes
+WIRESHARK_DEPENDENCIES += sbc
+else
+WIRESHARK_CONF_OPTS += --with-sbc=no
 endif
 
 $(eval $(autotools-package))

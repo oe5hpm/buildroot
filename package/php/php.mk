@@ -4,8 +4,7 @@
 #
 ################################################################################
 
-PHP_VERSION_MAJOR = 5.6
-PHP_VERSION = $(PHP_VERSION_MAJOR).16
+PHP_VERSION = 7.0.7
 PHP_SITE = http://www.php.net/distributions
 PHP_SOURCE = php-$(PHP_VERSION).tar.xz
 PHP_INSTALL_STAGING = YES
@@ -27,6 +26,10 @@ PHP_CONF_ENV = \
 
 ifeq ($(BR2_STATIC_LIBS),y)
 PHP_CONF_ENV += LIBS="$(PHP_STATIC_LIBS)"
+endif
+
+ifeq ($(BR2_STATIC_LIBS)$(BR2_TOOLCHAIN_HAS_THREADS),yy)
+PHP_STATIC_LIBS += -lpthread
 endif
 
 ifeq ($(BR2_TARGET_LOCALTIME),)
@@ -175,11 +178,7 @@ PHP_CONF_OPTS += --with-readline=$(STAGING_DIR)/usr
 PHP_DEPENDENCIES += readline
 endif
 
-### Native MySQL extensions
-ifeq ($(BR2_PACKAGE_PHP_EXT_MYSQL),y)
-PHP_CONF_OPTS += --with-mysql=$(STAGING_DIR)/usr
-PHP_DEPENDENCIES += mysql
-endif
+### Native SQL extensions
 ifeq ($(BR2_PACKAGE_PHP_EXT_MYSQLI),y)
 PHP_CONF_OPTS += --with-mysqli=$(STAGING_DIR)/usr/bin/mysql_config
 PHP_DEPENDENCIES += mysql
@@ -209,9 +208,6 @@ endif
 ifeq ($(BR2_PACKAGE_PHP_EXT_PDO_UNIXODBC),y)
 PHP_CONF_OPTS += --with-pdo-odbc=unixODBC,$(STAGING_DIR)/usr
 PHP_DEPENDENCIES += unixodbc
-ifeq ($(BR2_STATIC_LIBS)$(BR2_TOOLCHAIN_HAS_THREADS),yy)
-PHP_STATIC_LIBS += -lpthread
-endif
 endif
 endif
 

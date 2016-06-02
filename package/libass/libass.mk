@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBASS_VERSION = 0.13.0
+LIBASS_VERSION = 0.13.2
 LIBASS_SOURCE = libass-$(LIBASS_VERSION).tar.xz
 # Do not use the github helper here, the generated tarball is *NOT*
 # the same as the one uploaded by upstream for the release.
@@ -28,7 +28,7 @@ ifeq ($(BR2_PACKAGE_FONTCONFIG),y)
 LIBASS_DEPENDENCIES += fontconfig
 LIBASS_CONF_OPTS += --enable-fontconfig
 else
-LIBASS_CONF_OPTS += --disable-fontconfig
+LIBASS_CONF_OPTS += --disable-fontconfig --disable-require-system-font-provider
 endif
 
 ifeq ($(BR2_PACKAGE_HARFBUZZ),y)
