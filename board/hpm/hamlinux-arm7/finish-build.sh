@@ -1,4 +1,9 @@
 #!/bin/bash
-cp $1/rootfs.cpio.uboot /tftpboot/tseries
-cp $1/rootfs.jffs2 /tftpboot/tseries
+DESTDIR=/tftpboot/tseries/hamlinux/
+cp $1/rootfs.jffs2 $DESTDIR
+cp $1/MLO $DESTDIR
+cp $1/u-boot.img $DESTDIR
+cp $1/zImage $DESTDIR
+cp $1/*.dtb $DESTDIR
+
 
