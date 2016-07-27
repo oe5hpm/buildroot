@@ -11,6 +11,7 @@ DTC_LICENSE = GPLv2+/BSD-2c
 DTC_LICENSE_FILES = README.license GPL
 DTC_INSTALL_STAGING = YES
 DTC_DEPENDENCIES = host-bison host-flex
+HOST_DTC_DEPENDENCIES = host-bison host-flex
 
 define DTC_POST_INSTALL_TARGET_RM_DTDIFF
 	rm -f $(TARGET_DIR)/usr/bin/dtdiff
@@ -50,7 +51,9 @@ define HOST_DTC_BUILD_CMDS
 endef
 
 define HOST_DTC_INSTALL_CMDS
-	$(MAKE) -C $(@D) PREFIX=$(HOST_DIR)/usr install-bin
+	$(MAKE) -C $(@D) PREFIX=$(HOST_DIR)/usr install-bin install-lib \
+		install-includes
+
 endef
 
 $(eval $(generic-package))

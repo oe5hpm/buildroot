@@ -47,6 +47,11 @@ config BR2_HOST_GCC_AT_LEAST_5
 	default y if BR2_HOST_GCC_VERSION = "5"
 	select BR2_HOST_GCC_AT_LEAST_4_9
 
+config BR2_HOST_GCC_AT_LEAST_6
+	bool
+	default y if BR2_HOST_GCC_VERSION = "6"
+	select BR2_HOST_GCC_AT_LEAST_5
+
 # Hidden boolean selected by packages in need of Java in order to build
 # (example: xbmc)
 config BR2_NEEDS_HOST_JAVA
@@ -377,6 +382,10 @@ config BR2_DEPRECATED_SINCE_2016_02
 	default y
 
 config BR2_DEPRECATED_SINCE_2016_05
+	bool
+	default y
+
+config BR2_DEPRECATED_SINCE_2016_08
 	bool
 	default y
 
@@ -718,6 +727,17 @@ config BR2_COMPILER_PARANOID_UNSAFE_PATH
 	  and external toolchain backends (through the toolchain wrapper).
 
 endmenu
+
+config BR2_REPRODUCIBLE
+	bool "Make the build reproducible (experimental)"
+	help
+	  This option will remove all sources of non-reproducibility
+	  from the build process. For a given Buildroot configuration,
+	  this allows to generate exactly identical binaries from one
+	  build to the other, including on different machines.
+
+	  This is labeled as an experimental feature, as not all
+	  packages behave properly to ensure reproducibility.
 
 endmenu
 

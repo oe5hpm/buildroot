@@ -9,8 +9,6 @@ WESTON_SITE = http://wayland.freedesktop.org/releases
 WESTON_SOURCE = weston-$(WESTON_VERSION).tar.xz
 WESTON_LICENSE = MIT
 WESTON_LICENSE_FILES = COPYING
-# For 0002-build-add-check-for-clock_gettime-in-librt.patch
-WESTON_AUTORECONF = YES
 
 WESTON_DEPENDENCIES = host-pkgconf wayland wayland-protocols \
 	libxkbcommon pixman libpng jpeg mtdev udev cairo libinput \
@@ -142,6 +140,12 @@ WESTON_CONF_OPTS += --enable-junit-xml
 WESTON_DEPENDENCIES += libxml2
 else
 WESTON_CONF_OPTS += --disable-junit-xml
+endif
+
+ifeq ($(BR2_PACKAGE_WESTON_DEMO_CLIENTS),y)
+WESTON_CONF_OPTS += --enable-demo-clients-install
+else
+WESTON_CONF_OPTS += --disable-demo-clients-install
 endif
 
 $(eval $(autotools-package))
