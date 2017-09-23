@@ -1,2 +1,2 @@
-# From https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.1/sha256sums.asc
-sha256	97e36a029224e2606baa6e9ea693b04a4d192ccd714572a1b50a2df9c687b23d	e2fsprogs-1.43.1.tar.xz
+# From https://www.kernel.org/pub/linux/kernel/people/tytso/e2fsprogs/v1.43.6/sha256sums.asc
+sha256 c9b226234ee878a8d89951f3b155cec7416dd0ec09c932c855f1b1df8ad93402  e2fsprogs-1.43.6.tar.xz

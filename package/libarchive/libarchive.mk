@@ -4,10 +4,10 @@
 #
 ################################################################################
 
-LIBARCHIVE_VERSION = 3.2.1
+LIBARCHIVE_VERSION = 3.3.2
 LIBARCHIVE_SITE = http://www.libarchive.org/downloads
 LIBARCHIVE_INSTALL_STAGING = YES
-LIBARCHIVE_LICENSE = BSD-2c, BSD-3c
+LIBARCHIVE_LICENSE = BSD-2-Clause, BSD-3-Clause
 LIBARCHIVE_LICENSE_FILES = COPYING
 
 ifeq ($(BR2_PACKAGE_LIBARCHIVE_BSDTAR),y)
@@ -28,6 +28,16 @@ LIBARCHIVE_CONF_OPTS += --enable-bsdcpio=shared
 endif
 else
 LIBARCHIVE_CONF_OPTS += --disable-bsdcpio
+endif
+
+ifeq ($(BR2_PACKAGE_LIBARCHIVE_BSDCAT),y)
+ifeq ($(BR2_STATIC_LIBS),y)
+LIBARCHIVE_CONF_OPTS += --enable-bsdcat=static
+else
+LIBARCHIVE_CONF_OPTS += --enable-bsdcat=shared
+endif
+else
+LIBARCHIVE_CONF_OPTS += --disable-bsdcat
 endif
 
 ifeq ($(BR2_PACKAGE_ACL),y)
@@ -105,6 +115,7 @@ HOST_LIBARCHIVE_DEPENDENCIES = host-zlib
 HOST_LIBARCHIVE_CONF_OPTS = \
 	--disable-bsdtar \
 	--disable-bsdcpio \
+	--disable-bsdcat \
 	--disable-acl \
 	--disable-xattr \
 	--without-bz2lib \
