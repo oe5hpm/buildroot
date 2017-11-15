@@ -4,5 +4,6 @@ config BR2_PACKAGE_VZLOGGER
 	select BR2_PACKAGE_LIBGCRYPT
 	select BR2_PACKAGE_LIBMBUS1
 	select BR2_PACKAGE_JSON_C
+	select BR2_PACKAGE_LIBCURL
 	help
 	  VZlogger is a measurement util for several meters and bringing the values into volkszaehler
