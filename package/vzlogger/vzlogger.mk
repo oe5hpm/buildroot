@@ -1,7 +1,7 @@
 #############################################################
 # vzlogger
 #############################################################
-VZLOGGER_VERSION = cmake-liby-install-rules #master #875d718
+VZLOGGER_VERSION = hpm-udp-api #cmake-liby-install-rules #master #875d718
 VZLOGGER_SOURCE = vzlogger-$(VZLOGGER_VERSION).tgz
 VZLOGGER_SITE = https://github.com/oe5hpm/vzlogger.git
 VZLOGGER_SITE_METHOD = git
