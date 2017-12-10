@@ -1,2 +1,2 @@
-# From http://nodejs.org/dist/v8.6.0/SHASUMS256.txt
-sha256 b17071109238295b9f363b768afdff97a9f386203d4f080c91847ce76d4f7e93  node-v8.6.0.tar.xz
+# From http://nodejs.org/dist/v8.9.1/SHASUMS256.txt
+sha256 ef160c21f60f8aca64145985e01b4044435e381dc16e8f0640ed0223e84f17e0  node-v8.9.1.tar.xz
