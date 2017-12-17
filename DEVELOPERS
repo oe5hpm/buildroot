@@ -35,6 +35,7 @@ F:	package/busybox/
 F:	package/checkpolicy/
 F:	package/cppdb/
 F:	package/gstreamer1/gstreamer1/
+F:	package/gstreamer1/gstreamer1-mm/
 F:	package/gstreamer1/gst1-plugins-bad/
 F:	package/gstreamer1/gst1-plugins-base/
 F:	package/gstreamer1/gst1-plugins-good/
@@ -184,6 +185,9 @@ F:	package/luaposix/
 F:	package/luasec/
 F:	package/lua-ev/
 F:	package/orbit/
+
+N:	Bartosz Bilas <b.bilas@grinn-global.com>
+F:	package/qt5/qt5scxml/
 
 N:	Bartosz Golaszewski <brgl@bgdev.pl>
 F:	package/autoconf-archive/
@@ -1040,6 +1044,9 @@ F:	package/polkit/
 F:	package/sg3_utils/
 F:	package/udisks/
 
+N:	Mario Lang <mlang@blind.guru>
+F:	package/lynx/
+
 N:	Mario Rugiero <mrugiero@gmail.com>
 F:	package/ratpoison/
 
@@ -1278,10 +1285,8 @@ F:	package/google-breakpad/
 N:	Patrick Gerber <kpa_info@yahoo.fr>
 F:	package/yavta/
 
-N:	Paul Cercueil <paul.cercueil@analog.com>
-F:	package/libiio/
-
 N:	Paul Cercueil <paul@crapouillou.net>
+F:	package/libiio/
 F:	package/lightning/
 
 N:	Pedro Aguilar <paguilar@paguilar.org>
@@ -1527,10 +1532,13 @@ F:	board/linksprite/pcduino
 F:	board/orangepi/orangepi-zero
 F:	board/orangepi/orangepi-one
 F:	board/orangepi/orangepi-pc-plus/
+F:	board/solidrun/macchiatobin
 F:	configs/linksprite_pcduino_defconfig
 F:	configs/orangepi_one_defconfig
 F:	configs/orangepi_pc_plus_defconfig
 F:	configs/orangepi_zero_defconfig
+F:	configs/solidrun_macchiatobin_mainline_defconfig
+F:	configs/solidrun_macchiatobin_marvell_defconfig
 F:	package/armbian-firmware/
 F:	package/rtl8189fs/
 F:	package/xr819-xradio/
@@ -1538,7 +1546,9 @@ F:	package/xr819-xradio/
 N:	Sergio Prado <sergio.prado@e-labworks.com>
 F:	package/libgdiplus/
 F:	package/mongodb/
+F:	package/pimd/
 F:	package/stella/
+F:	package/traceroute/
 F:	package/tunctl/
 F:	package/ubus/
 

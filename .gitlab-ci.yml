@@ -216,6 +216,8 @@ snps_archs38_axs103_defconfig: *defconfig
 snps_archs38_haps_defconfig: *defconfig
 snps_archs38_vdk_defconfig: *defconfig
 socrates_cyclone5_defconfig: *defconfig
+solidrun_macchiatobin_mainline_defconfig: *defconfig
+solidrun_macchiatobin_marvell_defconfig: *defconfig
 stm32f429_disco_defconfig: *defconfig
 stm32f469_disco_defconfig: *defconfig
 telit_evk_pro3_defconfig: *defconfig
@@ -231,6 +233,9 @@ zynq_microzed_defconfig: *defconfig
 zynq_zc706_defconfig: *defconfig
 zynq_zed_defconfig: *defconfig
 zynq_zybo_defconfig: *defconfig
+tests.boot.test_atf.TestATFAllwinner: *runtime_test
+tests.boot.test_atf.TestATFMarvell: *runtime_test
+tests.boot.test_atf.TestATFVexpress: *runtime_test
 tests.core.test_post_scripts.TestPostScripts: *runtime_test
 tests.core.test_rootfs_overlay.TestRootfsOverlay: *runtime_test
 tests.core.test_timezone.TestGlibcAllTimezone: *runtime_test
