@@ -1,6 +1,7 @@
 BR2_arm=y
 BR2_cortex_a8=y
 BR2_ARM_FPU_NEON=y
+BR2_SVN="svn"
 BR2_KERNEL_MIRROR="http://www.kernel.org/pub"
 BR2_LUAROCKS_MIRROR="http://luarocks.org/repositories/rocks"
 BR2_CPAN_MIRROR="http://search.cpan.org/CPAN"
@@ -68,6 +69,7 @@ BR2_PACKAGE_MTD_MKFSJFFS2=y
 # BR2_PACKAGE_MTD_UBIUPDATEVOL is not set
 # BR2_PACKAGE_MTD_UBIBLOCK is not set
 BR2_PACKAGE_FSWEBCAM=y
+BR2_PACKAGE_SDL2=y
 BR2_PACKAGE_AVRDUDE=y
 BR2_PACKAGE_EUDEV_RULES_GEN=y
 BR2_PACKAGE_I2C_TOOLS=y
