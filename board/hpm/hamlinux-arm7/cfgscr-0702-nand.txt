@@ -5,7 +5,7 @@ echo running HAMRADIO factory settings (NAND, 7.2in screen)
 # grow device-tree blob
 fdt resize 0x10000
 
-# set MMC on
+# set NAND on
 fdt set gpmc status "okay"
 
 # set lcd panel and controller on
