@@ -1,0 +1,39 @@
+fdt addr ${dtbaddr} || exit
+
+echo running HAMRADIO factory settings (eMMC, 7.2in screen)
+
+# grow device-tree blob
+fdt resize 0x10000
+
+# set MMC on
+fdt set mmc status "okay"
+
+# set lcd panel and controller on
+fdt set /panel status "okay"
+fdt set ds1ctrl status "okay"
+
+# set display timings for 7.2in display
+fdt set ds1timing clock-frequency <32000000>
+fdt set ds1timing hactive <800>
+fdt set ds1timing vactive <480>
+fdt set ds1timing hfront-porch <2>
+fdt set ds1timing hback-porch <192>
+fdt set ds1timing hsync-len <1>
+fdt set ds1timing vfront-porch <20>
+fdt set ds1timing vsync-len <1>
+fdt set ds1timing hsync-active <1>
+fdt set ds1timing vsync-active <1>
+fdt set ds1timing pupdelay <10>
+fdt set ds1timing pondelay <10>
+
+# set pwm-backlight as backlight driver
+fdt get value tmp /panel bkl-pwm
+fdt set /panel backlight ${tmp}
+
+# do some other specific settings
+#setenv ethaddr 00:60:65:01:02:03
+#setenv eth1addr 00:60:65:01:02:04
+fdt set fset serial-no "12345"
+
+echo "done"
+

@@ -1,0 +1,6 @@
+load ${loaddev}:1 ${loadaddr} /boot/zImage
+load ${loaddev}:1 ${dtbaddr} /boot/am335x-ppt30-ham.dtb
+
+setenv bootargs console=${console} b_mode=${b_mode} root=/dev/mmcblk0p1 rootfstype=ext4
+run cfgscr
+bootz ${loadaddr} - ${dtbaddr}
