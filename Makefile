@@ -2,7 +2,7 @@
 #
 # Copyright (C) 1999-2005 by Erik Andersen <andersen@codepoet.org>
 # Copyright (C) 2006-2014 by the Buildroot developers <buildroot@uclibc.org>
-# Copyright (C) 2014-2017 by the Buildroot developers <buildroot@buildroot.org>
+# Copyright (C) 2014-2018 by the Buildroot developers <buildroot@buildroot.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -87,9 +87,9 @@ all:
 .PHONY: all
 
 # Set and export the version string
-export BR2_VERSION := 2018.02-git
+export BR2_VERSION := 2018.05-git
 # Actual time the release is cut (for reproducible builds)
-BR2_VERSION_EPOCH = 1512070000
+BR2_VERSION_EPOCH = 1520198000
 
 # Save running make version since it's clobbered by the make package
 RUNNING_MAKE_VERSION := $(MAKE_VERSION)
@@ -361,6 +361,22 @@ HOSTCC_VERSION := $(shell $(HOSTCC_NOCCACHE) --version | \
 # For gcc >= 5.x, we only need the major version.
 ifneq ($(firstword $(HOSTCC_VERSION)),4)
 HOSTCC_VERSION := $(firstword $(HOSTCC_VERSION))
+endif
+
+ifeq ($(BR2_NEEDS_HOST_UTF8_LOCALE),y)
+# First, we try to use the user's configured locale (as that's the
+# language they'd expect messages to be displayed), then we favour
+# a non language-specific locale like C.UTF-8 if one is available,
+# so we sort with the C locale to get it at the top.
+# This is guaranteed to not be empty, because of the check in
+# support/dependencies/dependencies.sh
+HOST_UTF8_LOCALE := $(shell \
+			( echo $${LC_ALL:-$${LC_MESSAGES:-$${LANG}}}; \
+			  locale -a 2>/dev/null | LC_ALL=C sort \
+			) \
+			| grep -i -E 'utf-?8$$' \
+			| head -n 1)
+HOST_UTF8_LOCALE_ENV := LC_ALL=$(HOST_UTF8_LOCALE)
 endif
 
 # Make sure pkg-config doesn't look outside the buildroot tree
@@ -729,7 +745,8 @@ endif
 		echo "ID=buildroot"; \
 		echo "VERSION_ID=$(BR2_VERSION)"; \
 		echo "PRETTY_NAME=\"Buildroot $(BR2_VERSION)\"" \
-	) >  $(TARGET_DIR)/etc/os-release
+	) >  $(TARGET_DIR)/usr/lib/os-release
+	ln -sf ../usr/lib/os-release $(TARGET_DIR)/etc
 
 	@$(call MESSAGE,"Sanitizing RPATH in target tree")
 	$(TOPDIR)/support/scripts/fix-rpath target

@@ -143,6 +143,14 @@ LINUX_FIRMWARE_FILES += ath10k/QCA988X/hw2.0/board.bin \
 LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.atheros_firmware
 endif
 
+# ath10k-qca6174
+ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_ATHEROS_10K_QCA6174),y)
+LINUX_FIRMWARE_FILES += ath10k/QCA6174/hw3.0/board.bin \
+			ath10k/QCA6174/hw3.0/firmware-4.bin \
+			ath10k/QCA6174/hw3.0/firmware-6.bin
+LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.atheros_firmware
+endif
+
 # sd8686 v8
 ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_LIBERTAS_SD8686_V8),y)
 LINUX_FIRMWARE_FILES += libertas/sd8686_v8.bin libertas/sd8686_v8_helper.bin
@@ -446,6 +454,22 @@ ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_REDPINE_RS9113),y)
 LINUX_FIRMWARE_FILES += rsi/rs9113_wlan_qspi.rps
 # No license file; the license is in the file WHENCE
 # which is installed unconditionally
+endif
+
+ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_QAT_DH895XCC),y)
+# qat_mmp.bin is a symlink to qat_895xcc_mmp.bin
+LINUX_FIRMWARE_FILES += qat_895xcc.bin qat_895xcc_mmp.bin qat_mmp.bin
+LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.qat_firmware
+endif
+
+ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_QAT_C3XXX),y)
+LINUX_FIRMWARE_FILES += qat_c3xxx.bin qat_c3xxx_mmp.bin
+LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.qat_firmware
+endif
+
+ifeq ($(BR2_PACKAGE_LINUX_FIRMWARE_QAT_C62X),y)
+LINUX_FIRMWARE_FILES += qat_c62x.bin qat_c62x_mmp.bin
+LINUX_FIRMWARE_ALL_LICENSE_FILES += LICENCE.qat_firmware
 endif
 
 ifneq ($(LINUX_FIRMWARE_FILES),)

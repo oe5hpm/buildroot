@@ -51,7 +51,9 @@ F:	package/libsemanage/
 F:	package/libsepol/
 F:	package/nginx-naxsi/
 F:	package/policycoreutils/
+F:	package/python-flask-sqlalchemy/
 F:	package/python-mutagen/
+F:	package/python-sqlalchemy/
 F:	package/restorecond/
 F:	package/refpolicy/
 F:	package/selinux-python/
@@ -72,6 +74,8 @@ F:	package/libqmi/
 F:	package/modem-manager/
 
 N:	Alex Suykov <alex.suykov@gmail.com>
+F:	board/chromebook/snow/
+F:	configs/chromebook_snow_defconfig
 F:	package/vboot-utils/
 
 N:	Alexander Clouter <alex+buildroot@digriz.org.uk>
@@ -91,14 +95,14 @@ F:	package/hostapd/
 N:	Alexander Varnin <fenixk19@mail.ru>
 F:	package/liblog4c-localtime/
 
-N:	Alexandre Belloni <alexandre.belloni@free-electrons.com>
+N:	Alexandre Belloni <alexandre.belloni@bootlin.com>
 F:	package/tz/
 
 N:	Alexandre Esse <alexandre.esse.dev@gmail.com>
 F:	package/kvazaar/
 F:	package/v4l2loopback/
 
-N:	Alistair Francis <alistair.francis@xilinx.com>
+N:	Alistair Francis <alistair@alistair23.me>
 F:	package/xen/
 
 N:	Alvaro G. M <alvaro.gamez@hazent.com>
@@ -150,7 +154,7 @@ F:	package/lsscsi/
 N:	Anthony Viallard <viallard@syscom-instruments.com>
 F:	package/gnuplot/
 
-N:	Antoine Ténart <antoine.tenart@free-electrons.com>
+N:	Antoine Ténart <antoine.tenart@bootlin.com>
 F:	package/wf111/
 
 N:	ARC Maintainers <arc-buildroot@synopsys.com>
@@ -173,6 +177,9 @@ F:	package/owfs/
 F:	package/python-bottle/
 F:	package/sqlcipher/
 F:	package/stress/
+
+N:	Asaf Kahlon <asafka7@gmail.com>
+F:	package/python-jsonmodels/
 
 N:	Ash Charles <ash.charles@savoirfairelinux.com>
 F:	package/pru-software-support/
@@ -203,6 +210,7 @@ F:	package/pulseview/
 F:	package/sigrok-cli/
 
 N:	Baruch Siach <baruch@tkos.co.il>
+F:	package/18xx-ti-utils/
 F:	package/daemon/
 F:	package/dropbear/
 F:	package/ebtables/
@@ -342,6 +350,7 @@ F:	package/python-pylru/
 F:	package/python-requests-oauthlib/
 F:	package/python-slob/
 F:	package/rtmpdump/
+F:	package/samba4/
 F:	package/softether/
 F:	package/taglib/
 F:	package/tinyxml2/
@@ -455,6 +464,8 @@ F:	arch/Config.in.powerpc
 F:	package/kvm-unit-tests
 
 N:	Dagg Stompler <daggs@gmx.com>
+F:	board/hardkernel/odroidc2
+F:	configs/odroidc2_defconfig
 F:	package/libamcodec/
 F:	package/odroid-mali/
 F:	package/odroid-scripts/
@@ -540,6 +551,8 @@ F:	package/xxhash/
 N:	Eric Le Bihan <eric.le.bihan.dev@free.fr>
 F:	docs/manual/adding-packages-meson.txt
 F:	package/adwaita-icon-theme/
+F:	package/cargo-bin/
+F:	package/cargo/
 F:	package/darkhttpd/
 F:	package/eudev/
 F:	package/execline/
@@ -547,6 +560,8 @@ F:	package/hicolor-icon-theme/
 F:	package/jemalloc/
 F:	package/meson/
 F:	package/ninja/
+F:	package/rust-bin/
+F:	package/rust/
 F:	package/s6/
 F:	package/s6-dns/
 F:	package/s6-linux-init/
@@ -595,11 +610,16 @@ F:	package/supertuxkart/
 N:	Fabio Estevam <festevam@gmail.com>
 F:	board/warp7/
 F:	configs/freescale_imx*
-F:	configs/imx6-sabresd*
+F:	configs/imx23evk_defconfig
+F:	configs/imx6-sabre*
 F:	configs/imx6slevk_defconfig
 F:	configs/imx6sx-sdb_defconfig
 F:	configs/imx6ulevk_defconfig
 F:	configs/imx6ulpico_defconfig
+F:	configs/imx7dpico_defconfig
+F:	configs/mx25pdk_defconfig
+F:	configs/mx51evk_defconfig
+F:	configs/mx53loco_defconfig
 F:	configs/mx6cubox_defconfig
 F:	configs/mx6sx_udoo_neo_defconfig
 F:	configs/mx6udoo_defconfig
@@ -636,6 +656,7 @@ F:	package/libupnp18/
 F:	package/minissdpd/
 F:	package/motion/
 F:	package/rygel/
+F:	package/safeclib/
 F:	package/tinycbor/
 F:	package/tinydtls/
 
@@ -722,6 +743,10 @@ F:	package/ocrad/
 F:	package/tesseract-ocr/
 F:	package/webp/
 
+N:	Giulio Benetti <giulio.benetti@micronovasrl.com>
+F:	package/sunxi-mali-mainline/
+F:	package/sunxi-mali-mainline-driver/
+
 N:	Gregory Dymarek <gregd72002@gmail.com>
 F:	package/ding-libs/
 F:	package/gengetopt/
@@ -752,6 +777,7 @@ F:	package/libusbgx/
 F:	package/python-cheetah/
 F:	package/python-markdown/
 F:	package/python-pyqt/
+F:	package/python-remi/
 F:	package/python-sip/
 
 N:	Henrique Camargo <henrique@henriquecamargo.com>
@@ -775,8 +801,12 @@ N:	Ismael Luceno <ismael@iodev.co.uk>
 F:	package/axel/
 
 N:	Jagan Teki <jagan@amarulasolutions.com>
+F:	board/amarula/
+F:	board/asus/
 F:	board/bananapi/
 F:	board/engicam/
+F:	configs/amarula_vyasa_rk3288_defconfig
+F:	configs/asus_tinker_rk3288_defconfig
 F:	board/friendlyarm/nanopi-a64/
 F:	board/friendlyarm/nanopi-neo2/
 F:	board/olimex/a64-olinuxino/
@@ -1073,6 +1103,10 @@ F:	package/libkcapi/
 
 N:	Marcus Folkesson <marcus.folkesson@gmail.com>
 F:	package/libostree/
+F:	package/libselinux/
+F:	package/libsemanage/
+F:	package/libsepol/
+F:	package/selinux-python/
 F:	utils/config
 F:	utils/diffconfig
 
@@ -1167,6 +1201,7 @@ F:	package/policycoreutils/
 F:	package/proftpd/
 F:	package/protobuf-c/
 F:	package/protobuf/
+F:	package/python-flask-cors/
 F:	package/python-ipy/
 F:	package/python-posix-ipc/
 F:	package/python-pypcap/
@@ -1239,7 +1274,7 @@ F:	package/systemd-bootchart/
 F:	package/tinyalsa/
 F:	package/tinyxml/
 
-N:	Maxime Ripard <maxime.ripard@free-electrons.com>
+N:	Maxime Ripard <maxime.ripard@bootlin.com>
 F:	package/kmsxx/
 
 N:	Michael Rommel <rommel@layer-7.net>
@@ -1268,7 +1303,7 @@ N:	Mike Harmony <mike.harmony@snapav.com>
 F:	board/sinovoip/m2-plus/
 F:	configs/bananapi_m2_plus_defconfig
 
-N:	Mylène Josserand <mylene.josserand@free-electrons.com>
+N:	Mylène Josserand <mylene.josserand@bootlin.com>
 F:	package/rtl8723bu/
 
 N:	Nathan Lynch <ntl@pobox.com>
@@ -1503,9 +1538,6 @@ F:	package/terminology/
 F:	package/upower/
 F:	package/xenomai/
 
-N:	Romain Perier <romain.perier@free-electrons.com>
-F:	package/amd-catalyst/
-
 N:	Ryan Barnett <ryan.barnett@rockwellcollins.com>
 F:	package/atftp/
 F:	package/miraclecast/
@@ -1677,6 +1709,7 @@ F:	package/dvdrw-tools/
 F:	package/memtest86/
 F:	package/mjpegtools/
 F:	package/tovid/
+F:	package/udftools/
 F:	package/xorriso/
 
 N:	Steve Thomas <scjthm@live.com>
@@ -1726,7 +1759,7 @@ F:	support/scripts/size-stats
 F:	utils/size-stats-compare
 F:	toolchain/
 
-N:	Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+N:	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 F:	arch/Config.in.arm
 F:	boot/boot-wrapper-aarch64/
 F:	boot/grub2/

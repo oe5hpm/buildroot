@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBVA_VERSION = 2.0.0
+LIBVA_VERSION = 2.1.0
 LIBVA_SOURCE = libva-$(LIBVA_VERSION).tar.bz2
 LIBVA_SITE = https://github.com/01org/libva/releases/download/$(LIBVA_VERSION)
 LIBVA_LICENSE = MIT
@@ -16,7 +16,6 @@ LIBVA_DEPENDENCIES = host-pkgconf libdrm
 LIBVA_CONF_OPTS = \
 	--enable-drm \
 	--with-drivers-path="/usr/lib/va"
-
 
 ifeq ($(BR2_PACKAGE_XORG7),y)
 LIBVA_DEPENDENCIES += xlib_libX11 xlib_libXext xlib_libXfixes

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-MPV_VERSION = 0.27.0
+MPV_VERSION = 0.27.2
 MPV_SITE = https://github.com/mpv-player/mpv/archive
 MPV_SOURCE = v$(MPV_VERSION).tar.gz
 MPV_DEPENDENCIES = \
@@ -31,7 +31,8 @@ MPV_CONF_OPTS = \
 	--disable-uchardet \
 	--disable-vapoursynth \
 	--disable-vapoursynth-lazy \
-	--disable-vdpau
+	--disable-vdpau \
+	--disable-mali-fbdev
 
 # ALSA support requires pcm+mixer
 ifeq ($(BR2_PACKAGE_ALSA_LIB_MIXER)$(BR2_PACKAGE_ALSA_LIB_PCM),yy)
