@@ -1,0 +1,21 @@
+From 8e15bc08700c4100954b21a01b90611e192896f2 Mon Sep 17 00:00:00 2001
+From: Hannes Schmelzer <hannes.schmelzer@br-automation.com>
+Date: Tue, 26 Sep 2017 08:07:06 +0200
+Subject: [PATCH] create empty m4 dir
+
+---
+ m4/emptydir | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 m4/emptydir
+
+diff --git a/m4/emptydir b/m4/emptydir
+new file mode 100644
+index 0000000..b4c7d06
+--- /dev/null
++++ b/m4/emptydir
+@@ -0,0 +1,2 @@
++is empty
++
+-- 
+2.7.4
+
