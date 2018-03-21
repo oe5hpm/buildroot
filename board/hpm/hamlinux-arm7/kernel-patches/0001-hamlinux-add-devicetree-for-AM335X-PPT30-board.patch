@@ -1,0 +1,390 @@
+From 2504cef863ec182db2cc4d6a47472df637d76a17 Mon Sep 17 00:00:00 2001
+From: Hannes Schmelzer <oe5hpm@oevsv.at>
+Date: Wed, 21 Mar 2018 09:59:34 +0100
+Subject: [PATCH 1/4] hamlinux: add devicetree for AM335X-PPT30 board
+
+Signed-off-by: Hannes Schmelzer <oe5hpm@oevsv.at>
+---
+ arch/arm/boot/dts/Makefile             |   3 +-
+ arch/arm/boot/dts/am335x-ppt30-ham.dts | 355 +++++++++++++++++++++++++++++++++
+ 2 files changed, 357 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/am335x-ppt30-ham.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index d0381e9..bca9719 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -657,7 +657,8 @@ dtb-$(CONFIG_SOC_AM33XX) += \
+ 	am335x-shc.dtb \
+ 	am335x-sbc-t335.dtb \
+ 	am335x-sl50.dtb \
+-	am335x-wega-rdk.dtb
++	am335x-wega-rdk.dtb \
++	am335x-ppt30-ham.dtb
+ dtb-$(CONFIG_ARCH_OMAP4) += \
+ 	omap4-droid4-xt894.dtb \
+ 	omap4-duovero-parlor.dtb \
+diff --git a/arch/arm/boot/dts/am335x-ppt30-ham.dts b/arch/arm/boot/dts/am335x-ppt30-ham.dts
+new file mode 100644
+index 0000000..be2e4ec
+--- /dev/null
++++ b/arch/arm/boot/dts/am335x-ppt30-ham.dts
+@@ -0,0 +1,355 @@
++/*
++ * Copyright (C) 2018 Hannes Schmelzer (oe5hpm@oevsv.at)
++ * Copyright (C) 2014 Bernecker & Rainer Industrieelektronik GmbH
++ * http://www.br-automation.com
++ *
++ * SPDX-License-Identifier:     GPL-2.0+
++ */
++ /dts-v1/;
++
++#include "am33xx.dtsi"
++
++/ {
++	model = "B&R PPT30 HAMRADIO-Version";
++
++	fset: factory-settings {
++		bl-version	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456890";
++		version		= <0x0100>;
++		order-no	= "6PPT30 HAMRADIO (NAND)";
++		hw-revision	= "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456890";
++		serial-no	= "0";
++		device-id	= <0x0>;
++		parent-id	= <0x0>;
++		hw-variant	= <0x1>;
++	};
++
++	aliases {
++		ds1bkl0 = &pwmbacklight;
++		ds1bkl1 = &tps_bl;
++		ds1timing = &timing0;
++		ds1ctrl = &lcdc;
++		gpmc = &gpmc;
++		mmc = &mmc2;
++		fset = &fset;
++	};
++
++	memory {
++		device_type = "memory";
++		reg = <0x80000000 0x10000000>; /* 256 MB */
++	};
++
++	panel {
++		status = "disabled";
++
++		compatible = "ti,tilcdc,panel";
++		enable-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
++
++		backlight = <&pwmbacklight>;
++		bkl-pwm = <&pwmbacklight>;
++		bkl-tps = <&tps_bl>;
++
++		panel-info {
++			ac-bias		= <255>;
++			ac-bias-intrpt	= <0>;
++			dma-burst-sz	= <16>;
++			bpp		= <32>;
++			fdd		= <0x80>;
++			sync-edge	= <0>;
++			sync-ctrl	= <1>;
++			raster-order	= <0>;
++			fifo-th		= <0>;
++		};
++
++		display-timings {
++			native-mode = <&timing0>;
++			timing0: lcd {
++				clock-frequency	= <32000000>;
++				hactive		= <800>;
++				vactive		= <480>;
++				hfront-porch	= <2>;
++				hback-porch	= <192>;
++				hsync-len	= <1>;
++				vfront-porch	= <20>;
++				vback-porch	= <2>;
++				vsync-len	= <1>;
++				hsync-active	= <1>;
++				vsync-active	= <1>;
++				pupdelay	= <10>;
++				pondelay	= <10>;
++			};
++		};
++	};
++
++	vmmcsd_fixed: fixedregulator@0 {
++		compatible = "regulator-fixed";
++		regulator-name = "vmmcsd_fixed";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	ntc: b57330v2103@5 {
++		compatible = "ntc,b57330v2103";
++		status = "okay";
++		pullup-uv = <1800000>;
++		pullup-ohm = <10000>;
++		pulldown-ohm = <0>;
++		io-channels = <&am335x_adc 1>;
++	};
++
++	pwm0: omap-pwm@timer5 {
++		compatible = "ti,omap-dmtimer-pwm";
++		ti,timers = <&timer5>;
++		#pwm-cells = <3>;
++	};
++
++	pwm1: omap-pwm@timer6 {
++		compatible = "ti,omap-dmtimer-pwm";
++		ti,timers = <&timer6>;
++		#pwm-cells = <3>;
++	};
++
++	beeper: pwm-beep {
++		compatible = "pwm-beeper";
++		pwms = <&pwm0 0 0 0>;
++	};
++
++	pwmbacklight: pwm-bkl {
++		compatible = "pwm-backlight";
++		pwms = <&pwm1 0 5000000 0>;
++
++		default-brightness-level = <255>;
++		brightness-levels = <0 16 32 64 128 170 202 234 255>;
++
++		power-supply = <&vmmcsd_fixed>;
++		enable-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&uart1 {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	tps: tps@24 {
++		reg = <0x24>;
++		compatible = "ti,tps65217";
++
++		tps_bl: backlight {
++			compatible = "ti,tps65217-bl";
++			isel = <1>;	/* 1 - ISET1, 2 ISET2 */
++			fdim = <1000>;	/* TPS65217_BL_FDIM_1kHZ */
++			default-brightness = <50>;
++		};
++	};
++};
++
++&i2c2 {
++	status = "okay";
++	clock-frequency = <100000>;
++};
++
++&cppi41dma  {
++	status = "okay";
++};
++
++&usb {
++	status = "okay";
++};
++
++&usb_ctrl_mod {
++	status = "okay";
++};
++
++&usb0_phy {
++	status = "okay";
++};
++
++&usb1_phy {
++	status = "okay";
++};
++
++&usb0 {
++	status = "okay";
++	dr_mode = "host";
++};
++
++&usb1 {
++	status = "okay";
++	dr_mode = "host";
++};
++
++&davinci_mdio {
++	status = "okay";
++	
++	phy0: ethernet-phy@0 {
++		reg = <1>;
++	};
++	
++	phy1: ethernet-phy@1 {
++		reg = <2>;
++	};
++};
++
++&mac {
++	dual_emac;
++	status = "okay";
++};
++
++&cpsw_emac0 {
++	phy-handle = <&phy0>;
++	dual_emac_res_vlan = <1>;
++	phy-mode = "mii";
++};
++
++&cpsw_emac1 {
++	phy-handle = <&phy1>;
++	dual_emac_res_vlan = <2>;
++	phy-mode = "mii";
++};
++
++&mmc2 {
++	vmmc-supply = <&vmmcsd_fixed>;
++	bus-width = <0x4>;
++	ti,non-removable;
++	ti,needs-special-hs-handling;
++	ti,vcc-aux-disable-is-sleep;
++	status = "disabled";
++};
++
++&lcdc {
++	status = "disabled";
++};
++
++&elm {
++	status = "okay";
++};
++
++&sham {
++	status = "okay";
++};
++
++&aes {
++	status = "okay";
++};
++
++&gpio0 {
++	ti,no-reset-on-init;
++};
++
++&gpio1 {
++	ti,no-reset-on-init;
++};
++
++&gpio2 {
++	ti,no-reset-on-init;
++};
++
++&gpio3 {
++	ti,no-reset-on-init;
++};
++
++&wdt2 {
++	ti,no-reset-on-init;
++	ti,no-idle-on-init;
++};
++
++&tscadc {
++	status = "okay";
++	tsc {
++		ti,wires = <4>;
++		ti,x-plate-resistance = <200>;
++		ti,zx-cutoff-ratio = <40>;
++		ti,min_deviation = <60>;
++		ti,max_deviation = <600>;
++		ti,coordinate-readouts = <5>;
++		ti,wire-config = <0x00 0x11 0x22 0x33>;
++
++		bnr-buttons {
++			Home-Button {};
++		};
++	};
++
++	adc {
++		ti,adc-channels = <5 6 7>;
++	};
++};
++
++&gpmc {
++	status = "disabled";
++	pinctrl-names = "default";
++	ranges = <0 0 0x08000000 0x10000000>;	/* CS0: NAND */
++	nand@0,0 {
++		compatible = "ti,omap2-nand";
++		reg = <0 0 4>; /* CS0, offset 0, IO size 4 */
++		interrupt-parent = <&gpmc>;
++		rb-gpios = <&gpmc 1 GPIO_ACTIVE_HIGH>; /* gpmc_wait1 */
++		ti,nand-ecc-opt = "bch8";
++		ti,elm-id = <&elm>;
++		nand-bus-width = <8>;
++		gpmc,device-width = <1>;
++		gpmc,sync-clk-ps = <0>;
++		gpmc,cs-on-ns = <0>;
++		gpmc,cs-rd-off-ns = <44>;
++		gpmc,cs-wr-off-ns = <44>;
++		gpmc,adv-on-ns = <6>;
++		gpmc,adv-rd-off-ns = <34>;
++		gpmc,adv-wr-off-ns = <44>;
++		gpmc,we-on-ns = <0>;
++		gpmc,we-off-ns = <40>;
++		gpmc,oe-on-ns = <0>;
++		gpmc,oe-off-ns = <54>;
++		gpmc,access-ns = <64>;
++		gpmc,rd-cycle-ns = <82>;
++		gpmc,wr-cycle-ns = <82>;
++		gpmc,wait-on-read = "true";
++		gpmc,wait-on-write = "true";
++		gpmc,bus-turnaround-ns = <0>;
++		gpmc,cycle2cycle-delay-ns = <0>;
++		gpmc,clk-activation-ns = <0>;
++		gpmc,wait-monitoring-ns = <0>;
++		gpmc,wr-access-ns = <40>;
++		gpmc,wr-data-mux-bus-ns = <0>;
++		gpmc,wait-pin = <1>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		partition@0 {
++			label = "NAND.MLO";
++			reg = <0x00000000 0x000020000>;
++		};
++		partition@1 {
++			label = "NAND.cfgscr";
++			reg = <0x00020000 0x00020000>;
++		};
++		partition@2 {
++			label = "NAND.dtb";
++			reg = <0x00040000 0x00020000>;
++		};
++		partition@3 {
++			label = "NAND.u-boot-env";
++			reg = <0x00060000 0x00020000>;
++		};
++		partition@4 {
++			label = "NAND.u-boot";
++			reg = <0x00080000 0x00080000>;
++		};
++		partition@5 {
++			label = "NAND.kernel";
++			reg = <0x00100000 0x00400000>;
++		};
++		partition@6 {
++			label = "NAND.rootfs";
++			reg = <0x00500000 0x08000000>;
++		};
++		partition@7 {
++			label = "NAND.user";
++			reg = <0x08500000 0x17b00000>;
++		};
++	};
++};
+-- 
+2.7.4
+

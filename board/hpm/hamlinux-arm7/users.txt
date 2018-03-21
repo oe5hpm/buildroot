@@ -1,0 +1,1 @@
+aprs -1 staff -1 =aprs /home/aprs /bin/sh dialout,audio,users,gpio APRS-User

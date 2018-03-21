@@ -1,0 +1,18 @@
+#!/bin/sh
+# create aprs-users home directory
+[ -d /home/aprs ] || mkdir -p /home/aprs
+chown -R aprs:staff /home/aprs
+
+# create dxlAPRS toolchain directory
+[ -d /home/dxlAPRS ] || mkdir -p /home/dxlAPRS
+cp /root/utils/updateDXLaprs /home/dxlAPRS
+[ -d /home/dxlAPRS ] && chown -R aprs:staff /home/dxlAPRS
+
+# make Xorg Server executeable for 'normal' users
+chmod u+s /usr/bin/Xorg
+
+# make ping executeable for 'normal' user
+chmod u+s /bin/ping
+
+# remove this script from startup
+rm /etc/init.d/S99firstboot

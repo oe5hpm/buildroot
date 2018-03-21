@@ -1,0 +1,33 @@
+From 67ef08bf996e2cf43688a2bceca446f98cf9b89d Mon Sep 17 00:00:00 2001
+From: Hannes Petermaier <hannes.petermaier@br-automation.com>
+Date: Wed, 10 Dec 2014 11:36:04 +0100
+Subject: [PATCH] bur: support ext_csd_rev 7
+
+Signed-off-by: Hannes Petermaier <hannes.petermaier@br-automation.com>
+---
+ mmc_cmds.c |    2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/mmc_cmds.c b/mmc_cmds.c
+index b8afa74..8c1ef88 100644
+--- a/mmc_cmds.c
++++ b/mmc_cmds.c
+@@ -722,6 +722,7 @@ int do_read_extcsd(int nargs, char **argv)
+ 	ext_csd_rev = ext_csd[192];
+ 
+ 	switch (ext_csd_rev) {
++	case 7:
+ 	case 6:
+ 		str = "4.5";
+ 		break;
+@@ -741,6 +742,7 @@ int do_read_extcsd(int nargs, char **argv)
+ 		str = "4.0";
+ 		break;
+ 	default:
++		printf("unknown ext_csd_rev (%d)!\n", ext_csd_rev);
+ 		goto out_free;
+ 	}
+ 	printf("=============================================\n");
+-- 
+1.7.10.4
+
