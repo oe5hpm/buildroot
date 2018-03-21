@@ -3,7 +3,6 @@
 #setenv eth1addr 00:60:65:01:02:04
 
 # test for already loaded dtb
->>>>>>> hamlinux-test
 fdt addr ${dtbaddr} || exit
 
 echo running HAMRADIO factory settings (NAND, 4.3in screen)
