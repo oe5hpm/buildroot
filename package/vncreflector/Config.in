@@ -1,0 +1,7 @@
+config BR2_PACKAGE_VNCREFLECTOR
+	bool "vncreflector"
+	select BR2_PACKAGE_JPEG
+	select BR2_PACKAGE_ZLIB
+	help
+	  VNC Reflector is a specialized VNC server which acts as a proxy
+	  sitting between real VNC server (host) and a number of VNC clients.
