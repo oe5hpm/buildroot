@@ -1,0 +1,19 @@
+# setup device-specific environment (MAC-Address, ...)
+#setenv ethaddr 00:60:65:01:02:03
+#setenv eth1addr 00:60:65:01:02:04
+
+# test for already loaded dtb
+fdt addr ${dtbaddr} || exit
+
+echo running HAMRADIO factory settings (NAND, headless)
+
+# grow device-tree blob
+fdt resize 0x10000
+
+# set NAND on
+fdt set gpmc status "okay"
+
+# do some other specific settings
+fdt set fset serial-no "12345"
+
+echo "done"
