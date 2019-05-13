@@ -1,0 +1,9 @@
+config BR2_PACKAGE_SVXLINK
+	bool "svxlink"
+	select BR2_PACKAGE_ALSA_LIB
+	select BR2_PACKAGE_LIBSIGC
+	select BR2_PACKAGE_LIBGSM
+	select BR2_PACKAGE_POPT
+	select BR2_PACKAGE_TCL
+	help
+	  svxlink is full featured controller for a hamradio repeater

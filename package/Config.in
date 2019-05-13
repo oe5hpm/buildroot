@@ -2236,4 +2236,8 @@ menu "Text editors and viewers"
 	source "package/vim/Config.in"
 endmenu
 
+menu "HAMRADIO applications"
+	source "package/svxlink/Config.in"
+endmenu
+
 endmenu
