@@ -179,6 +179,7 @@ F:	package/sysdig/
 N:	Anisse Astier <anisse@astier.eu>
 F:	package/go/
 F:	package/nghttp2/
+F:	package/pkg-golang.mk
 
 N:	Anthony Viallard <viallard@syscom-instruments.com>
 F:	package/gnuplot/
@@ -294,6 +295,7 @@ F:	package/freeswitch/
 F:	package/freeswitch-mod-bcg729/
 F:	package/ghostscript/
 F:	package/giflib/
+F:	package/gli/
 F:	package/glmark2/
 F:	package/hdparm/
 F:	package/jsoncpp/
@@ -439,6 +441,7 @@ F:	package/initscripts/
 F:	package/intel-microcode/
 F:	package/libpam-radius-auth/
 F:	package/libpam-tacplus/
+F:	package/liburiparser/
 F:	package/modem-manager/
 F:	package/pamtester/
 F:	package/pcm-tools/
@@ -453,6 +456,7 @@ F:	package/sysvinit/
 F:	package/util-linux/
 F:	package/tpm2-abrmd/
 F:	package/tpm2-tools/
+F:	package/tpm2-totp/
 F:	package/tpm2-tss/
 
 N:	Carsten Schoenert <c.schoenert@gmail.com>
@@ -495,6 +499,7 @@ F:	package/docker-engine/
 F:	package/docker-proxy/
 F:	package/go/
 F:	package/mosh/
+F:	package/pkg-golang.mk
 F:	package/rtl8821au/
 F:	package/runc/
 F:	package/tini/
@@ -565,6 +570,9 @@ F:	configs/odroidc2_defconfig
 F:	package/libamcodec/
 F:	package/odroid-mali/
 F:	package/odroid-scripts/
+
+N:	Daniel J. Leach <dleach@belcan.com>
+F:	package/dacapo/
 
 N:	Damien Lanson <damien@kal-host.com>
 F:	package/libvdpau/
@@ -795,6 +803,7 @@ F:	package/libgee/
 F:	package/libglib2/
 F:	package/libgtk2/
 F:	package/libgtk3/
+F:	package/libhtp/
 F:	package/libidn/
 F:	package/libidn2/
 F:	package/libjpeg/
@@ -826,8 +835,12 @@ F:	package/ncmpc/
 F:	package/oniguruma/
 F:	package/oprofile/
 F:	package/pcmanfm/
+F:	package/python-backcall/
+F:	package/python-jedi/
+F:	package/python-parso/
 F:	package/rygel/
 F:	package/safeclib/
+F:	package/suricata/
 F:	package/tinycbor/
 F:	package/tinydtls/
 F:	package/tinymembench/
@@ -1312,6 +1325,8 @@ F:	package/ti-sgx-um/
 
 N:	Louis-Paul Cordier <lpdev@cordier.org>
 F:	package/intel-gmmlib/
+F:	package/intel-mediadriver/
+F:	package/intel-mediasdk/
 
 N:	Luca Ceresoli <luca@lucaceresoli.net>
 F:	board/olimex/a20_olinuxino/
@@ -1454,6 +1469,7 @@ F:	package/checksec/
 F:	package/cgroupfs-mount/
 F:	package/crda/
 F:	package/cunit/
+F:	package/dacapo/
 F:	package/devmem2/
 F:	package/dnsmasq/
 F:	package/dosfstools/
@@ -1657,6 +1673,12 @@ F:	package/trousers/
 N:	Norbert Lange <nolange79@gmail.com>
 F:	package/tcf-agent/
 
+N:	Nylon Chen <nylon7@andestech.com>
+F:	arch/Config.in.nds32
+F:	board/andes
+F:	configs/andes_ae3xx_defconfig
+F:	toolchain/toolchain-external/toolchain-external-andes-nds32/
+
 N:	Olaf Rempel <razzor@kopf-tisch.de>
 F:	package/ctorrent/
 
@@ -1715,6 +1737,7 @@ F:	configs/minnowboard_max_defconfig
 F:	configs/nexbox_a95x_defconfig
 F:	configs/openblocks_a6_defconfig
 F:	configs/orangepi_pc_defconfig
+F:	configs/orangepi_r1_defconfig
 F:	configs/pandaboard_defconfig
 F:	configs/roseapplepi_defconfig
 F:	configs/sheevaplug_defconfig
@@ -1749,6 +1772,7 @@ F:	package/python-validators/
 F:	package/python-webob/
 F:	package/python-websocket-client/
 F:	package/sedutil/
+F:	package/tpm2-totp/
 F:	package/triggerhappy/
 
 N:	Peter Seiderer <ps.report@gmx.net>
@@ -1783,19 +1807,10 @@ N:	Petr Kulhavy <brain@jikos.cz>
 F:	package/linuxptp/
 
 N:	Petr Vorel <petr.vorel@gmail.com>
-F:	package/connman/
-F:	package/feh/
-F:	package/imlib2/
 F:	package/iproute2/
 F:	package/iputils/
-F:	package/libmbim/
-F:	package/libqmi/
 F:	package/linux-backports/
 F:	package/ltp-testsuite/
-F:	package/modem-manager/
-F:	package/network-manager/
-F:	package/ofono/
-F:	package/python-networkmanager/
 F:	support/kconfig/
 
 N:	Phil Eichinger <phil.eichinger@gmail.com>
@@ -1896,6 +1911,7 @@ N:	Romain Naour <romain.naour@gmail.com>
 F:	package/aubio/
 F:	package/bullet/
 F:	package/efl/
+F:	package/enet/
 F:	package/enlightenment/
 F:	package/flare-engine/
 F:	package/flare-game/
@@ -2107,6 +2123,9 @@ F:	package/gstreamer1/gst1-libav/
 F:	package/libmms/
 F:	package/orc/
 F:	package/wampcc/
+
+N:	Sven Oliver Moll <svolli@svolli.de>
+F:	package/most/
 
 N:	Theo Debrouwere <t.debrouwere@televic.com>
 F:	package/pugixml/

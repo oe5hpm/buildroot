@@ -93,6 +93,7 @@ endif
 # ac_cv_prog_cc_c99: RPM uses non-standard GCC extensions (ex. `asm`).
 RPM_CONF_ENV = \
 	ac_cv_prog_cc_c99='-std=gnu99' \
-	CFLAGS="$(TARGET_CFLAGS) $(RPM_CFLAGS)"
+	CFLAGS="$(TARGET_CFLAGS) $(RPM_CFLAGS)" \
+	LIBS=$(TARGET_NLS_LIBS)
 
 $(eval $(autotools-package))

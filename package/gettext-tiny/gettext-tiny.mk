@@ -49,15 +49,11 @@ define HOST_GETTEXT_TINY_COPY_EXTRA_FILES
 endef
 HOST_GETTEXT_TINY_POST_PATCH_HOOKS += HOST_GETTEXT_TINY_COPY_EXTRA_FILES
 
-ifeq ($(BR2_ENABLE_LOCALE),)
-HOST_GETTEXT_TINY_DEPENDENCIES = libiconv
-endif
-
 define HOST_GETTEXT_TINY_BUILD_CMDS
 	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
 		$(HOST_CONFIGURE_OPTS) \
 		CFLAGS="$(HOST_CFLAGS) -fPIC" \
-		LIBINTL=NOOP
+		LIBINTL=NONE
 
 	cp $(@D)/extra/gettextize.in $(@D)/gettextize
 
@@ -79,7 +75,8 @@ define HOST_GETTEXT_TINY_INSTALL_CMDS
 
 	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
 		$(HOST_CONFIGURE_OPTS) \
-		prefix=$(HOST_DIR) install
+		prefix=$(HOST_DIR) \
+		LIBINTL=NONE install
 
 	$(SED) '/read dummy/d' $(@D)/gettextize
 
@@ -97,19 +94,15 @@ define HOST_GETTEXT_TINY_INSTALL_CMDS
 	$(INSTALL) -m 0644 -D $(@D)/extra/Makevars.template $(HOST_DIR)/share/gettext-tiny/po/Makevars.template
 
 	$(Q)touch $(HOST_DIR)/share/gettext-tiny/ABOUT-NLS
+
+	# for gettextize
+	ln -sf $(HOST_DIR)/usr/share/gettext-tiny $(HOST_DIR)/usr/share/gettext
 endef
 
 # Install simple echo wrapper for gettext tool
 define GETTEXT_TINY_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 -D $(GETTEXT_TINY_PKGDIR)/gettext-wrapper $(TARGET_DIR)/usr/bin/gettext
 endef
-
-ifeq ($(BR2_SYSTEM_ENABLE_NLS),)
-GETTEXTIZE = $(HOST_CONFIGURE_OPTS) \
-	     AUTOM4TE=$(HOST_DIR)/bin/autom4te \
-	     gettext_datadir=$(HOST_DIR)/usr/share/gettext-tiny \
-	     $(HOST_DIR)/bin/gettextize -f
-endif
 
 $(eval $(generic-package))
 $(eval $(host-generic-package))
