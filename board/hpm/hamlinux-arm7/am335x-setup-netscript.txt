@@ -1,0 +1,13 @@
+# setup script for leit-arm boards
+setenv ldcmd "tftp ${loadaddr}"
+
+nand erase.part u-boot-env
+nand erase.part use
+
+${ldcmd} MLO && nand erase.part MLO && nand write ${loadaddr} MLO ${filesize}
+${ldcmd} cfgscr-headless-nand.img && nand erase.part cfgscr && nand write ${loadaddr} cfgscr ${filesize}
+${ldcmd} am335x-ppt30-ham.dtb && nand erase.part dtb && nand write ${loadaddr} dtb ${filesize}
+${ldcmd} u-boot-dtb.img && nand erase.part u-boot && nand write ${loadaddr} u-boot ${filesize}
+${ldcmd} zImage && nand erase.part kernel && nand write ${loadaddr} kernel ${filesize}
+${ldcmd} rootfs.jffs2 && nand erase.part rootfs && nand write ${loadaddr} rootfs ${filesize}
+

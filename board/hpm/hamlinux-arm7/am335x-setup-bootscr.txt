@@ -1,0 +1,11 @@
+# setup script for leit-arm boards
+setenv ldcmd 'load usb 0 ${loadaddr}'
+setenv ldcmd 'tftp ${loadaddr}'
+
+${ldcmd} ${loadaddr} MLO && nand erase.part MLO && nand write ${loadaddr} MLO ${filesize}
+${ldcmd} ${loadaddr} cfgscr-headless-nand.img && nand erase.part cfgscr && nand write ${loadaddr} cfgscr ${filesize}
+${ldcmd} ${loadaddr} am335x-ppt30-ham.dtb && nand erase.part dtb && nand write ${loadaddr} dtb ${filesize}
+${ldcmd} ${loadaddr} u-boot-dtb.img && nand erase.part u-boot && nand write ${loadaddr} u-boot ${filesize}
+${ldcmd} ${loadaddr} zImage && nand erase.part kernel && nand write ${loadaddr} kernel ${filesize}
+${ldcmd} ${loadaddr} rootfs.jffs2 && nand erase.part rootfs && nand write ${loadaddr} rootfs ${filesize}
+

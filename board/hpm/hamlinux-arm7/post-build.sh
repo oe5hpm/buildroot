@@ -25,4 +25,5 @@ for i in $(ls $BOARD_DIR/cfgscr*); do
 done
 
 # boot script
-"${MKIMAGE}" -C none -A arm -T script -d $BOARD_DIR/bootscr.txt ${BINARIES_DIR}/bootscr.img
+"${MKIMAGE}" -C none -A arm -T script -d $BOARD_DIR/am335x-setup-bootscr.txt ${BINARIES_DIR}/bootscr.img
+"${MKIMAGE}" -C none -A arm -T script -d $BOARD_DIR/am335x-setup-netscript.txt ${BINARIES_DIR}/netscript.img
