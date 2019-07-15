@@ -8,9 +8,6 @@ chown -R aprs:staff /home/aprs
 cp /root/utils/updateDXLaprs /home/dxlAPRS
 [ -d /home/dxlAPRS ] && chown -R aprs:staff /home/dxlAPRS
 
-# make Xorg Server executeable for 'normal' users
-chmod u+s /usr/bin/Xorg
-
 # make ping executeable for 'normal' user
 chmod u+s /bin/ping
 
