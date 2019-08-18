@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-QUAGGA_VERSION = 1.2.3
+QUAGGA_VERSION = 1.2.4
 QUAGGA_SITE = http://download.savannah.gnu.org/releases/quagga
 QUAGGA_DEPENDENCIES = host-gawk host-pkgconf
 QUAGGA_LICENSE = GPL-2.0+
@@ -17,6 +17,11 @@ QUAGGA_CONF_OPTS = \
 	--program-transform-name='' \
 	--sysconfdir=/etc/quagga \
 	--localstatedir=/var/run/quagga
+
+# quagga has its own internal copy of getopt_long. To avoid conflicts with libc's
+# getopt, we need to make sure that the getopt function itself is also built.
+QUAGGA_CONF_ENV = \
+	CFLAGS="$(TARGET_CFLAGS) -DREALLY_NEED_PLAIN_GETOPT"
 
 ifeq ($(BR2_PACKAGE_LIBCAP),y)
 QUAGGA_CONF_OPTS += --enable-capabilities
