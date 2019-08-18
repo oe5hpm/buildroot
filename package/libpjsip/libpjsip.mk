@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBPJSIP_VERSION = 2.7.2
+LIBPJSIP_VERSION = 2.8
 LIBPJSIP_SOURCE = pjproject-$(LIBPJSIP_VERSION).tar.bz2
 LIBPJSIP_SITE = http://www.pjsip.org/release/$(LIBPJSIP_VERSION)
 LIBPJSIP_DEPENDENCIES = libsrtp
@@ -26,27 +26,8 @@ LIBPJSIP_CONF_ENV = \
 
 LIBPJSIP_CONF_OPTS = \
 	--disable-sound \
-	--disable-resample \
 	--disable-video \
-	--disable-opencore-amr \
-	--disable-g7221-codec \
-	--disable-ilbc-codec \
-	--disable-libwebrtc \
-	--disable-opus \
-	--disable-oss \
-	--disable-ext-sound \
-	--disable-g711-codec \
-	--disable-l16-codec \
-	--disable-g722-codec \
-	--disable-libsamplerate \
-	--disable-sdl \
-	--disable-ffmpeg \
-	--disable-v4l2 \
-	--disable-openh264 \
-	--disable-libyuv \
-	--disable-ipp \
-	--disable-silk \
-	--with-external-srtp
+	--disable-libwebrtc
 
 # Note: aconfigure.ac is broken: --enable-epoll or --disable-epoll will
 # both enable it. But that's OK, epoll is better than the alternative,
