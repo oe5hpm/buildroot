@@ -1,9 +1,9 @@
 #############################################################
 # svxlink
 #############################################################
-SVXLINK_VERSION = 17.12.2
+SVXLINK_VERSION = sip
 SVXLINK_SOURCE = svxlink-$(SVXLINK_VERSION).tgz
-SVXLINK_SITE = https://github.com/sm0svx/svxlink.git
+SVXLINK_SITE = http://gitlab.oe5xbl.ampr.org/oe5hpm/svxlink.git
 SVXLINK_SITE_METHOD = git
 SVXLINK_INSTALL_STAGING = NO
 SVXLINK_INSTALL_TARGET = YES
