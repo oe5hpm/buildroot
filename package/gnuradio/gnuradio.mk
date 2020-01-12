@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-GNURADIO_VERSION = 3.7.13.3
-GNURADIO_SITE = http://gnuradio.org/releases/gnuradio
+GNURADIO_VERSION = 3.7.13.5
+GNURADIO_SITE = https://gnuradio.org/releases/gnuradio
 GNURADIO_LICENSE = GPL-3.0+
 GNURADIO_LICENSE_FILES = COPYING
 
@@ -17,10 +17,6 @@ GNURADIO_DEPENDENCIES = \
 	host-python-six \
 	host-swig \
 	boost
-
-ifeq ($(BR2_PACKAGE_ORC),y)
-GNURADIO_DEPENDENCIES += orc
-endif
 
 GNURADIO_CONF_OPTS = \
 	-DENABLE_DEFAULT=OFF \
@@ -51,6 +47,13 @@ endif
 # mean we have NEON support in our CPU.
 ifeq ($(BR2_ARM_CPU_HAS_NEON),)
 GNURADIO_CONF_OPTS += -Dhave_mfpu_neon=0
+endif
+
+ifeq ($(BR2_PACKAGE_ORC),y)
+GNURADIO_DEPENDENCIES += orc
+GNURADIO_CONF_OPTS += -DENABLE_ORC=ON
+else
+GNURADIO_CONF_OPTS += -DENABLE_ORC=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_GNURADIO_ANALOG),y)
@@ -130,9 +133,9 @@ GNURADIO_CONF_OPTS += -DENABLE_PYTHON=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_GNURADIO_PAGER),y)
-GNURADIO_CONF_OPTS += -DENABLE_PAGER=ON
+GNURADIO_CONF_OPTS += -DENABLE_GR_PAGER=ON
 else
-GNURADIO_CONF_OPTS += -DENABLE_PAGER=OFF
+GNURADIO_CONF_OPTS += -DENABLE_GR_PAGER=OFF
 endif
 
 ifeq ($(BR2_PACKAGE_GNURADIO_TRELLIS),y)
