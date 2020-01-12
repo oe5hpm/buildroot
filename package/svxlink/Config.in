@@ -5,5 +5,8 @@ config BR2_PACKAGE_SVXLINK
 	select BR2_PACKAGE_LIBGSM
 	select BR2_PACKAGE_POPT
 	select BR2_PACKAGE_TCL
+	select BR2_PACKAGE_LIBGCRYPT
+	select BR2_PACKAGE_LIBCURL
+	select BR2_PACKAGE_LIBPJSIP
 	help
 	  svxlink is full featured controller for a hamradio repeater
