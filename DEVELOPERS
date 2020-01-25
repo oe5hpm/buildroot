@@ -1002,6 +1002,7 @@ F:	package/at/
 F:	package/libnspr/
 F:	package/libnss/
 F:	package/minicom/
+F:	package/nfs-utils/
 F:	package/sunxi-mali-mainline/
 F:	package/sunxi-mali-mainline-driver/
 
@@ -1984,8 +1985,10 @@ N:	Petr Vorel <petr.vorel@gmail.com>
 F:	package/ima-evm-utils/
 F:	package/iproute2/
 F:	package/iputils/
+F:	package/libtirpc/
 F:	package/linux-backports/
 F:	package/ltp-testsuite/
+F:	package/nfs-utils/
 F:	support/kconfig/
 
 N:	Phil Eichinger <phil.eichinger@gmail.com>
@@ -2026,6 +2029,7 @@ F:	package/libubootenv/
 F:	package/libxml2/
 F:	package/mongoose/
 F:	package/mxml/
+F:	package/numactl/
 F:	package/python-periphery/
 F:	package/raspi-gpio/
 F:	package/sbc/
@@ -2072,6 +2076,7 @@ F:	package/lirc-tools/
 
 N:	Ricardo Martincoski <ricardo.martincoski@datacom.com.br>
 F:	package/atop/
+F:	package/thermald/
 
 N:	Ricardo Martincoski <ricardo.martincoski@gmail.com>
 F:	support/testing/infra/
@@ -2106,6 +2111,7 @@ F:	package/irssi/
 F:	package/vnstat/
 
 N:	Romain Naour <romain.naour@gmail.com>
+F:	package/alure/
 F:	package/aubio/
 F:	package/binutils/
 F:	package/bullet/
@@ -2334,13 +2340,6 @@ F:	package/powertop/
 N:	Sven Haardiek <sven.haardiek@iotec-gmbh.de>
 F:	package/lcdproc/
 F:	package/python-influxdb/
-
-N:	Sven Neumann <neumann@teufel.de>
-F:	package/glib-networking/
-F:	package/gstreamer1/gst1-libav/
-F:	package/libmms/
-F:	package/orc/
-F:	package/wampcc/
 
 N:	Sven Oliver Moll <svolli@svolli.de>
 F:	package/most/

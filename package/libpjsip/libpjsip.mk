@@ -54,6 +54,13 @@ else
 LIBPJSIP_CONF_OPTS += --disable-ssl
 endif
 
+ifeq ($(BR2_PACKAGE_OPUS),y)
+LIBPJSIP_DEPENDENCIES += opus
+LIBPJSIP_CONF_OPTS += --with-opus=$(STAGING_DIR)/usr
+else
+LIBPJSIP_CONF_OPTS += --disable-opus
+endif
+
 ifeq ($(BR2_PACKAGE_SPEEX)$(BR2_PACKAGE_SPEEXDSP),yy)
 LIBPJSIP_CONF_OPTS += \
 	--enable-speex-aec \
