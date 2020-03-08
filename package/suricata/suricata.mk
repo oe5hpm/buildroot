@@ -11,6 +11,9 @@ SURICATA_LICENSE_FILES = COPYING LICENSE
 # We're patching configure.ac
 SURICATA_AUTORECONF = YES
 
+# 0004-stream-reject-broken-ACK-packets.patch
+SURICATA_IGNORE_CVES += CVE-2019-18792
+
 SURICATA_DEPENDENCIES = \
 	host-pkgconf \
 	$(if $(BR2_PACKAGE_JANSSON),jansson) \
@@ -21,8 +24,8 @@ SURICATA_DEPENDENCIES = \
 	libpcap \
 	libyaml \
 	$(if $(BR2_PACKAGE_LZ4),lz4) \
-	$(if $(BR2_PACKAGE_LZMA),lzma) \
-	pcre
+	pcre \
+	$(if $(BR2_PACKAGE_XZ),xz)
 
 SURICATA_CONF_ENV = ac_cv_path_HAVE_SPHINXBUILD=no
 

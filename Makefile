@@ -2,7 +2,7 @@
 #
 # Copyright (C) 1999-2005 by Erik Andersen <andersen@codepoet.org>
 # Copyright (C) 2006-2014 by the Buildroot developers <buildroot@uclibc.org>
-# Copyright (C) 2014-2019 by the Buildroot developers <buildroot@buildroot.org>
+# Copyright (C) 2014-2020 by the Buildroot developers <buildroot@buildroot.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -92,9 +92,9 @@ all:
 .PHONY: all
 
 # Set and export the version string
-export BR2_VERSION := 2020.02-git
+export BR2_VERSION := 2020.02-rc3
 # Actual time the release is cut (for reproducible builds)
-BR2_VERSION_EPOCH = 1575236000
+BR2_VERSION_EPOCH = 1583189900
 
 # Save running make version since it's clobbered by the make package
 RUNNING_MAKE_VERSION := $(MAKE_VERSION)
@@ -187,6 +187,9 @@ include $(BR2_EXTERNAL_FILE)
 ifneq ($(BR2_EXTERNAL_ERROR),)
 $(error $(BR2_EXTERNAL_ERROR))
 endif
+
+# Workaround bug in make-4.3: https://savannah.gnu.org/bugs/?57676
+$(BASE_DIR)/.br2-external.mk:;
 
 # To make sure that the environment variable overrides the .config option,
 # set this before including .config.
@@ -340,7 +343,7 @@ export HOSTARCH := $(shell LC_ALL=C $(HOSTCC_NOCCACHE) -v 2>&1 | \
 
 # When adding a new host gcc version in Config.in,
 # update the HOSTCC_MAX_VERSION variable:
-HOSTCC_MAX_VERSION := 8
+HOSTCC_MAX_VERSION := 9
 
 HOSTCC_VERSION := $(shell V=$$($(HOSTCC_NOCCACHE) --version | \
 	sed -n -r 's/^.* ([0-9]*)\.([0-9]*)\.([0-9]*)[ ]*.*/\1 \2/p'); \
@@ -455,8 +458,12 @@ endif
 ifneq ($(HOST_DIR),$(BASE_DIR)/host)
 HOST_DIR_SYMLINK = $(BASE_DIR)/host
 $(HOST_DIR_SYMLINK): $(BASE_DIR)
-	ln -snf $(HOST_DIR) $(BASE_DIR)/host
+	ln -snf $(HOST_DIR) $(HOST_DIR_SYMLINK)
 endif
+
+STAGING_DIR_SYMLINK = $(BASE_DIR)/staging
+$(STAGING_DIR_SYMLINK): $(BASE_DIR)
+	ln -snf $(STAGING_DIR) $(STAGING_DIR_SYMLINK)
 
 # Quotes are needed for spaces and all in the original PATH content.
 BR_PATH = "$(HOST_DIR)/bin:$(HOST_DIR)/sbin:$(PATH)"
@@ -726,14 +733,12 @@ host-finalize: $(PACKAGES) $(HOST_DIR) $(HOST_DIR_SYMLINK)
 	$(call per-package-rsync,$(sort $(PACKAGES)),host,$(HOST_DIR))
 
 .PHONY: staging-finalize
-staging-finalize:
-	@ln -snf $(STAGING_DIR) $(BASE_DIR)/staging
+staging-finalize: $(STAGING_DIR_SYMLINK)
 
 .PHONY: target-finalize
 target-finalize: $(PACKAGES) $(TARGET_DIR) host-finalize
 	@$(call MESSAGE,"Finalizing target directory")
 	$(call per-package-rsync,$(sort $(PACKAGES)),target,$(TARGET_DIR))
-	# Check files that are touched by more than one package
 	$(foreach hook,$(TARGET_FINALIZE_HOOKS),$($(hook))$(sep))
 	rm -rf $(TARGET_DIR)/usr/include $(TARGET_DIR)/usr/share/aclocal \
 		$(TARGET_DIR)/usr/lib/pkgconfig $(TARGET_DIR)/usr/share/pkgconfig \
@@ -800,6 +805,13 @@ endif # merged /usr
 		$(EXTRA_ENV) $(s) $(TARGET_DIR) $(call qstrip,$(BR2_ROOTFS_POST_SCRIPT_ARGS))$(sep))
 
 	touch $(TARGET_DIR)/usr
+
+	cat $(sort $(wildcard $(BUILD_DIR)/*/.files-list.txt)) > \
+		$(BUILD_DIR)/packages-file-list.txt
+	cat $(sort $(wildcard $(BUILD_DIR)/*/.files-list-host.txt)) > \
+		$(BUILD_DIR)/packages-file-list-host.txt
+	cat $(sort $(wildcard $(BUILD_DIR)/*/.files-list-staging.txt)) > \
+		$(BUILD_DIR)/packages-file-list-staging.txt
 
 .PHONY: target-post-image
 target-post-image: $(TARGETS_ROOTFS) target-finalize staging-finalize

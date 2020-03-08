@@ -127,14 +127,17 @@ define EXIM_BUILD_CMDS
 		LNCC=$(HOSTCC) \
 		CFLAGS="-std=c99 $(HOST_CFLAGS)" \
 		LFLAGS="-fPIC $(HOST_LDFLAGS)"
-	$(TARGET_MAKE_ENV) build=br $(MAKE1) -C $(@D) $(EXIM_STATIC_FLAGS)
+	$(TARGET_MAKE_ENV) build=br $(MAKE1) -C $(@D) $(EXIM_STATIC_FLAGS) \
+		CFLAGS="-std=c99 $(TARGET_CFLAGS)"
 endef
 
 # Need to replicate the LFLAGS in install, as exim still wants to build
 # something when installing...
 define EXIM_INSTALL_TARGET_CMDS
 	DESTDIR=$(TARGET_DIR) INSTALL_ARG="-no_chown -no_symlink" build=br \
-	  $(MAKE1) -C $(@D) $(EXIM_STATIC_FLAGS) install
+	  $(MAKE1) -C $(@D) $(EXIM_STATIC_FLAGS) \
+		CFLAGS="-std=c99 $(TARGET_CFLAGS)" \
+		install
 	chmod u+s $(TARGET_DIR)/usr/sbin/exim
 endef
 

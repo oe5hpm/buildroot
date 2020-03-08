@@ -374,9 +374,9 @@ not and can not work as people would expect it should:
 * +LIBFOO_PATCH_DEPENDENCIES+ lists the dependencies (in terms of
   package name) that are required for the current package to be
   patched. These dependencies are guaranteed to be extracted and
-  patched before the current package is patched. In a similar way,
-  +HOST_LIBFOO_PATCH_DEPENDENCIES+ lists the dependencies for the
-  current host package.
+  patched (but not necessarily built) before the current package is
+  patched. In a similar way, +HOST_LIBFOO_PATCH_DEPENDENCIES+ lists
+  the dependencies for the current host package.
   This is seldom used; usually, +LIBFOO_DEPENDENCIES+ is what you
   really want to use.
 
@@ -487,6 +487,20 @@ not and can not work as people would expect it should:
   variable, unless the package installs binary blobs outside the default
   locations, `/lib/firmware`, `/usr/lib/firmware`, `/lib/modules`,
   `/usr/lib/modules`, and `/usr/share`, which are automatically excluded.
+
+* +LIBFOO_IGNORE_CVES+ is a space-separated list of CVEs that tells
+  Buildroot CVE tracking tools which CVEs should be ignored for this
+  package. This is typically used when the CVE is fixed by a patch in
+  the package, or when the CVE for some reason does not affect the
+  Buildroot package. A Makefile comment must always precede the
+  addition of a CVE to this variable. Example:
+
+----------------------
+# 0001-fix-cve-2020-12345.patch
+LIBFOO_IGNORE_CVES += CVE-2020-12345
+# only when built with libbaz, which Buildroot doesn't support
+LIBFOO_IGNORE_CVES += CVE-2020-54321
+----------------------
 
 The recommended way to define these variables is to use the following
 syntax:

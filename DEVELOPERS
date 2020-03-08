@@ -107,6 +107,9 @@ F:	package/libmbim/
 F:	package/libqmi/
 F:	package/modem-manager/
 
+N:	Alex Michel <alex.michel@wiedemann-group.com>
+F:	package/network-manager-openvpn/
+
 N:	Alex Suykov <alex.suykov@gmail.com>
 F:	board/chromebook/snow/
 F:	configs/chromebook_snow_defconfig
@@ -234,7 +237,6 @@ F:	package/arp-scan/
 F:	package/dehydrated/
 F:	package/freescale-imx/firmware-imx/
 F:	package/freescale-imx/imx-lib/
-F:	package/gstreamer/gst-fsl-plugins/
 F:	package/libpagekite/
 F:	package/lua-bit32/
 F:	package/owfs/
@@ -884,6 +886,7 @@ F:	package/pcmanfm/
 F:	package/python-backcall/
 F:	package/python-jedi/
 F:	package/python-parso/
+F:	package/rocksdb/
 F:	package/rygel/
 F:	package/safeclib/
 F:	package/suricata/
@@ -955,6 +958,11 @@ F:	package/ucl/
 F:	package/upx/
 F:	package/zxing-cpp/
 
+N:	Frank Vanbever <frank.vanbever@essensium.com>
+F: 	package/elixir/
+F:	package/libmodsecurity/
+F:	package/nginx-modsecurity/
+
 N:	Gaël Portay <gael.portay@collabora.com>
 F:	package/qt5/qt5virtualkeyboard/
 F:	package/qt5/qt5webengine/
@@ -990,7 +998,9 @@ F:	package/fdk-aac/
 F:	package/httping/
 F:	package/iozone/
 F:	package/leptonica/
+F:	package/libeXosip2/
 F:	package/libolm/
+F:	package/libosip2/
 F:	package/ocrad/
 F:	package/restclient-cpp/
 F:	package/tesseract-ocr/
@@ -1385,6 +1395,7 @@ F:	configs/imx8mmpico_defconfig
 F:	configs/imx8mpico_defconfig
 F:	package/fluid-soundfont/
 F:	package/fluidsynth/
+F:	package/glslsandbox-player/
 F:	package/ptm2human/
 
 N:	Julien Viard de Galbert <julien@vdg.name>
@@ -1679,6 +1690,8 @@ F:	package/wireless_tools/
 F:	package/xen/
 F:	support/testing/tests/package/br2-external/openjdk/
 F:	support/testing/tests/package/test_openjdk.py
+F:	support/testing/tests/package/test_opkg/
+F:	support/testing/tests/package/test_opkg.py
 
 N:	Mauro Condarelli <mc5686@mclink.it>
 F:	package/mc/
@@ -1742,6 +1755,10 @@ N:	Michael Durrant <mdurrant@arcturusnetworks.com>
 F:	board/arcturus/
 F:	configs/arcturus_ucp1020_defconfig
 F:	configs/arcturus_ucls1012a_defconfig
+
+N:	Michael Fischer <mf@go-sys.de>
+F:	package/gnuplot/
+F:	package/sdl2/
 
 N:	Michael Rommel <rommel@layer-7.net>
 F:	package/knock/
@@ -2109,6 +2126,8 @@ F:	package/irssi/
 F:	package/vnstat/
 
 N:	Romain Naour <romain.naour@gmail.com>
+F:	board/qemu/
+F:	configs/qemu_*
 F:	package/alure/
 F:	package/aubio/
 F:	package/binutils/
@@ -2149,9 +2168,8 @@ F:	package/upower/
 F:	package/waffle/
 F:	package/xenomai/
 F:	package/zziplib/
-F:	toolchain/toolchain-external/toolchain-external-arm-aarch64/
-F:	toolchain/toolchain-external/toolchain-external-arm-aarch64-be/
-F:	toolchain/toolchain-external/toolchain-external-arm-arm/
+F:	support/testing/tests/package/test_glxinfo.py
+F:	toolchain/
 
 N:	Roman Gorbenkov <roman.gorbenkov@ens2m.org>
 F:	package/davfs2/
@@ -2448,6 +2466,8 @@ F:	package/avro-c/
 F:	package/mosquitto/
 F:	package/python-avro/
 F:	package/redis/
+F:	package/waf/
+F:	support/testing/tests/package/test_crudini.py
 
 N:	Trent Piepho <tpiepho@impinj.com>
 F:	package/libp11/
@@ -2575,7 +2595,6 @@ F:	configs/beaglebone_defconfig
 F:	configs/beaglebone_qt5_defconfig
 F:	package/acl/
 F:	package/attr/
-F:	package/bluez_utils/
 F:	package/boost/
 F:	package/bootstrap/
 F:	package/cannelloni/
@@ -2588,6 +2607,7 @@ F:	package/imlib2/
 F:	package/jquery-datetimepicker/
 F:	package/jquery-sidebar/
 F:	package/kmod/
+F:	package/libftdi1/
 F:	package/libical/
 F:	package/libmbim/
 F:	package/libndp/
@@ -2607,12 +2627,15 @@ F:	package/poco/
 F:	package/python*
 F:	package/ser2net/
 F:	package/socketcand/
+F:	package/swig/
 F:	package/qt5/qt5serialbus/
 F:	package/sdparm/
 F:	package/ti-utils/
 F:	package/x11r7/xapp_xconsole/
 F:	package/x11r7/xapp_xinput-calibrator/
 F:	package/zlog/
+F:	support/testing/tests/package/test_libftdi1.py
+F:	support/testing/tests/package/test_python_can.py
 F:	utils/scanpypi
 
 N:	Zoltan Gyarmati <zgyarmati@zgyarmati.de>

@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBNSS_VERSION = 3.49.1
+LIBNSS_VERSION = 3.50
 LIBNSS_SOURCE = nss-$(LIBNSS_VERSION).tar.gz
 LIBNSS_SITE = https://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/NSS_$(subst .,_,$(LIBNSS_VERSION))_RTM/src
 LIBNSS_DISTDIR = dist
@@ -49,6 +49,11 @@ LIBNSS_BUILD_VARS = \
 	OS_RELEASE="2.6" \
 	OS_TEST=$(BR2_PACKAGE_LIBNSS_ARCH) \
 	NSS_ENABLE_WERROR=0
+
+ifeq ($(BR2_POWERPC_CPU_HAS_ALTIVEC),)
+# Disable Altivec if not supported
+LIBNSS_BUILD_VARS += NSS_DISABLE_ALTIVEC=1
+endif
 
 ifeq ($(BR2_ARCH_IS_64),y)
 # MIPS64 n32 is treated as a 32-bit architecture by libnss.

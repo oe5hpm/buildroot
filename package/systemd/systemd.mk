@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-SYSTEMD_VERSION = 244.1
+SYSTEMD_VERSION = 244.3
 SYSTEMD_SITE = $(call github,systemd,systemd-stable,v$(SYSTEMD_VERSION))
 SYSTEMD_LICENSE = LGPL-2.1+, GPL-2.0+ (udev), Public Domain (few source files, see README), BSD-3-Clause (tools/chromiumos)
 SYSTEMD_LICENSE_FILES = LICENSE.GPL2 LICENSE.LGPL2.1 README tools/chromiumos/LICENSE
@@ -330,7 +330,7 @@ ifneq ($(SYSTEMD_NETWORKD_DHCP_IFACE),)
 define SYSTEMD_INSTALL_NETWORK_CONFS
 	sed s/SYSTEMD_NETWORKD_DHCP_IFACE/$(SYSTEMD_NETWORKD_DHCP_IFACE)/ \
 		$(SYSTEMD_PKGDIR)/dhcp.network > \
-		$(TARGET_DIR)/etc/systemd/network/dhcp.network
+		$(TARGET_DIR)/etc/systemd/network/$(SYSTEMD_NETWORKD_DHCP_IFACE).network
 endef
 endif
 else
@@ -570,7 +570,9 @@ HOST_SYSTEMD_DEPENDENCIES = \
 # * thus re-tweak rpath after the installation for all binaries that need it
 HOST_SYSTEMD_HOST_TOOLS = \
 	systemd-analyze \
+	systemd-machine-id-setup \
 	systemd-mount \
+	systemd-nspawn \
 	systemctl \
 	udevadm
 
