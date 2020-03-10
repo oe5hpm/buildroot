@@ -1,5 +1,1 @@
-# From https://cmake.org/files/v3.9/cmake-3.9.6-SHA-256.txt
-sha256 7410851a783a41b521214ad987bb534a7e4a65e059651a2514e6ebfc8f46b218  cmake-3.9.6.tar.gz
-
-# Locally calculated
-sha256 9d8604f7afc5564ceb9705ba121f5fba2782ce18d92902f3c6ed338228372170  Copyright.txt
+sha256 b3345c17609ea0f039960ef470aa099de9942135990930a57c14575aae884987  cmake-3.10.0.tar.gz
